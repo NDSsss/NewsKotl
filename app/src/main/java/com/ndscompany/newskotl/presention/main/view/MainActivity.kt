@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         activity_main_recycler.layoutManager = LinearLayoutManager(this)
-        activity_main_recycler.adapter = NewsAdapter()
+        activity_main_recycler.adapter = NewsAdapter{vm.loadNextNewsPage()}
         vm.newsList.observe(this, observer)
         vm.notifyActivityCreated()
     }

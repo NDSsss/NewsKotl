@@ -9,7 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class NewsRepository: INewsRepository {
-    override fun getNews(): Observable<Page> = App.retrofit.create(NewsServise::class.java).getNews(1)
+    override fun getNews(pageNumber: Int): Observable<Page> = App.retrofit.create(NewsServise::class.java).getNews(pageNumber)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 

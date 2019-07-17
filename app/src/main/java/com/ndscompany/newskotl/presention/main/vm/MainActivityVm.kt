@@ -18,13 +18,19 @@ class MainActivityVm : ViewModel() {
         newsList.value = ArrayList()
     }
 
+    var pageNumber = 0
+
     val compositeDisposable = CompositeDisposable()
 
     var repository: INewsRepository = NewsRepository()
 
     fun notifyActivityCreated() {
         Log.d(TAG_NEWS, "activityCreated")
-        compositeDisposable.add(repository.getNews().subscribe({
+        loadNextNewsPage()
+    }
+
+    fun loadNextNewsPage(){
+        compositeDisposable.add(repository.getNews(++pageNumber).subscribe({
             newsList.value = it.data }, {}))
     }
 

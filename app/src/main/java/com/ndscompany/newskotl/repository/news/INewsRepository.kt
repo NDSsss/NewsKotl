@@ -5,5 +5,5 @@ import com.ndscompany.newskotl.data.classes.Page
 import io.reactivex.Observable
 
 interface INewsRepository {
-    fun getNews(): Observable<Page>
+    fun getNews(pageNumber: Int): Observable<Page>
 }

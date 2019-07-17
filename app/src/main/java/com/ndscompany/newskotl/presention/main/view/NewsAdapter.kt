@@ -8,7 +8,7 @@ import com.ndscompany.newskotl.R
 import com.ndscompany.newskotl.data.classes.Data
 import kotlinx.android.synthetic.main.item_news.view.*
 
-class NewsAdapter: RecyclerView.Adapter<NewsAdapter.NewsVh>() {
+class NewsAdapter(val paginationListener:() -> Unit): RecyclerView.Adapter<NewsAdapter.NewsVh>() {
 
     var newsList:ArrayList<Data> = ArrayList()
 
@@ -30,8 +30,12 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.NewsVh>() {
     override fun getItemCount(): Int = newsList.size
 
     override fun onBindViewHolder(holder: NewsVh, position: Int) {
+        holder.itemView.item_news_count.text = newsList[position].id.toString()
         holder.itemView.item_news_title.text = newsList[position].title
         holder.itemView.item_news_description.text = newsList[position].description
+        if(position == newsList.size-1){
+            paginationListener()
+        }
     }
 
     class NewsVh(itemView: View):RecyclerView.ViewHolder(itemView)

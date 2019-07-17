@@ -14,7 +14,7 @@ const val TAG_NEWS = "NewsTag"
 
 class NewsRepositoryMock: INewsRepository {
 
-    override fun getNews(): Observable<Page> = Observable.just(getMockNews())
+    override fun getNews(pageNumber: Int): Observable<Page> = Observable.just(getMockNews())
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
 
